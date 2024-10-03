@@ -1,0 +1,16 @@
+services:
+  tvheadend:
+    image: lscr.io/linuxserver/tvheadend:latest
+    container_name: tvheadend
+    network_mode: host # needed for discover of network muxes
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Etc/UTC
+    volumes:
+      - /path/to/tvheadend/data:/config # add your specific path
+      - /path/to/recordings:/recordings # add your specific path
+    ports:
+      - 9981:9981
+      - 9982:9982
+    restart: unless-stopped
